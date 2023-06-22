@@ -1,7 +1,6 @@
 from Crawler import Crawler
 from HTML_SearchEngine import HTML_SearchEngine
 
-
 class IAblauf:
 
     _crawli = Crawler()
@@ -9,16 +8,24 @@ class IAblauf:
     _URL = ""
     _tag = ""
     _searchword = ""
-    def crawling(self, URL):
+    _results = []
+
+
+    def __init__(self, URL,Tag,Searchword):
+        self._URL = URL
+        self._tag = Tag
+        self._searchword = Searchword
+
+    def _crawling(self):
         pass
 
-    def filtering(self):
+    def _filtering(self):
         pass
 
-    def collecting_data(self):
+    def _collecting_data(self):
         pass
 
     def ablauf(self):
-        self.crawling(self._URL)
+        self.crawling()
         self.filtering()
         self.collecting_data()

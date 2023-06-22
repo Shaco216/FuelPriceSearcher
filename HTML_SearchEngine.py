@@ -1,5 +1,4 @@
 
-
 class HTML_SearchEngine:
     _multipleValues = False
     _tag = { 1 : "class_", 2 : "ID", 3 : "a"}
