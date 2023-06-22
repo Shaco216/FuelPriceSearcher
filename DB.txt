@@ -1,0 +1,22 @@
+Create database FuelPriceSearcher;
+
+Create Table Ort ( plz int not null,
+name varchar(100) not null,
+constraint o_pk primary key(plz));
+
+Create Table Tankstelle ( Tid int not null,
+name varchar(100) not null,
+plz int not null,
+constraint t_pk primary key(Tid),
+foreign key (plz) references Ort(plz));
+
+Create Table Messung ( Mid int not null,
+Tid int not null,
+datum date not null,
+benzin double,
+diesel double,
+e10 double,
+superplus double,
+constraint m_pk primary key(Mid),
+foreign key (Tid) references Tankstelle(Tid));
+
