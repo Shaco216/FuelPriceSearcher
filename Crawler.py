@@ -7,6 +7,7 @@ import requests
 
 class Crawler:
     _url = "" #mit _name wird variable private
+    _htmlcode = ""
     _headers = {}
 
     def __init__(self, url=""):
@@ -29,6 +30,7 @@ class Crawler:
         else:
             print("Möglicherweise keine oder keine gute Verbindung zur gewünschten Seite.")
         HTML_Code = BeautifulSoup(content, 'html.parser')
+        self._htmlcode = HTML_Code
         return HTML_Code
 
     def Generate_HTML_Code_without_searchword(self):
@@ -39,5 +41,9 @@ class Crawler:
         else:
             print("Möglicherweise keine oder keine gute Verbindung zur gewünschten Seite.")
         HTML_Code = BeautifulSoup(content, 'html.parser')
+        self._htmlcode = HTML_Code
         return HTML_Code
+
+    def get_html_code(self):
+        return self._htmlcode
 

@@ -14,6 +14,9 @@ class HTML_SearchEngine:
     def choose_Tag(self, Tag):
         self._chosen_Tag = self._tag.get(Tag)
 
+    def show_Tag(self):
+        return self._chosen_Tag
+
     def show_filtered_results(self):
         return self._filtered_results
     def show_unfiltered_results(self):

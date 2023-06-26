@@ -5,6 +5,7 @@ class IAblauf:
 
     _crawli = Crawler()
     _filter = HTML_SearchEngine()
+    _htmlcode = ""
     _URL = ""
     _tag = ""
     _searchword = ""
