@@ -1,4 +1,5 @@
 from ISortService import ISortService
+import logging
 
 
 class SortierService(ISortService):
@@ -11,7 +12,13 @@ class SortierService(ISortService):
             try:
                 item = str(item)
                 item.replace('<div class="preis1"><span class="zahl" title="Preisangabe in Euro">',"")
-                preis = item[0:4]
+                preis = item[0:3]
             except:
-                print("Ein Fehler ist beim Preisauslesen passiert")
-                with()
+                logging.exception("Fehler bei Preisfilterung")
+            try:
+                laenge_item_ohne_preis = len(item) - 4
+                item = item[-laenge_item_ohne_preis]
+                item.find
+            except:
+
+
