@@ -18,7 +18,7 @@ class SortierService(ISortService):
             try:
                 laenge_item_ohne_preis = len(item) - 4
                 item = item[-laenge_item_ohne_preis]
-                item.find
+                title_start_position = item.find("title")
             except:
 
 
