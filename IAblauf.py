@@ -1,16 +1,17 @@
 from Crawler import Crawler
 from HTML_SearchEngine import HTML_SearchEngine
+from HTMLCodeRepository import *
 
 class IAblauf:
 
     _crawli = Crawler()
     _filter = HTML_SearchEngine()
-    _htmlcode = ""
+    #_htmlcode = "" vermutlich nicht mehr nötig
     _URL = ""
     _tag = ""
     _searchword = ""
     _results = []
-
+    repository = HTMLCodeRepository()
 
     def __init__(self, URL,Tag,Searchword):
         self._URL = URL
