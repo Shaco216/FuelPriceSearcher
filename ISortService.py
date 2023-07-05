@@ -1,4 +1,4 @@
-from PreisAblauf import PreisAblauf
+from AblaufPreis import AblaufPreis
 
 
 class ISortService:

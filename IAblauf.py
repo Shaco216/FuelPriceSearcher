@@ -18,16 +18,16 @@ class IAblauf:
         self._tag = Tag
         self._searchword = Searchword
 
-    def _crawling(self):
+    def __crawling(self):
         pass
 
-    def _filtering(self):
+    def __filtering(self):
         pass
 
-    def _collecting_data(self):
+    def __collecting_data(self):
         pass
 
     def ablauf(self):
-        self.crawling()
-        self.filtering()
-        self.collecting_data()
+        self.__crawling()
+        self.__filtering()
+        self.__collecting_data()
