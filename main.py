@@ -18,4 +18,4 @@ t_ablauf = AblaufTankstelle(EnumTags.Tags.underscore_class.value,"tankstelle")
 t_ablauf.ablauf(repo)
 tankstelle_daten = t_ablauf._results
 print(tankstelle_daten)
-tankstellen_sorter = SortierServiceTankstellendaten(preis_daten,tankstelle_daten)
+tankstellen_sorter = SortierServiceTankstellendaten(tankstelle_daten)
