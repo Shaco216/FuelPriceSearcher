@@ -4,6 +4,7 @@ from SortierServicePreis import SortierServicePreis
 from AblaufTankstelle import AblaufTankstelle
 from SortierServiceTankstellendaten import SortierServiceTankstellendaten
 
+#region preisdatenHolen
 p_ablauf = AblaufPreis("https://ich-tanke.de/tankstellen/super-e5/umkreis/lauingen-donau/", EnumTags.Tags.underscore_class.value, "preis1")
 p_ablauf.ablauf()
 preis_daten = p_ablauf._results
@@ -14,6 +15,8 @@ preis_sorter.sortiere_datensaetze()
 print(preis_sorter.ausgabe_preis())
 print(preis_sorter.ausgabe_datum())
 print(preis_sorter.ausgabe_uhrzeit())
+#endregion
+
 t_ablauf = AblaufTankstelle(EnumTags.Tags.underscore_class.value,"tankstelle")
 t_ablauf.ablauf(repo)
 tankstelle_daten = t_ablauf._results
