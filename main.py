@@ -17,6 +17,7 @@ print(preis_sorter.ausgabe_datum())
 print(preis_sorter.ausgabe_uhrzeit())
 #endregion
 
+#region tankstellenDatenHolen
 t_ablauf = AblaufTankstelle(EnumTags.Tags.underscore_class.value,"tankstelle")
 t_ablauf.ablauf(repo)
 tankstelle_daten = t_ablauf._results
@@ -24,3 +25,6 @@ print(tankstelle_daten)
 tankstellen_sorter = SortierServiceTankstellendaten(tankstelle_daten)
 tankstellen_sorter.sortiere_datensaetze()
 print(tankstellen_sorter.ausgabe_namen_liste())
+print(tankstellen_sorter.ausgabe_strasen_liste())
+print(tankstellen_sorter.ausgabe_orte_liste())
+#endregion
