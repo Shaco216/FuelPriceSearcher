@@ -23,12 +23,22 @@ class SortierServiceTankstellendaten(ISortService):
                     name_start = item.find("Preise und Details der ")
                     laenge_start = len("Preise und Details der ")
                     name_end = item.find("-Tankstelle anzeigen")
+                    laenge_name_end = len("-Tankstelle anzeigen")
                     temporaerer_name = item[name_start+laenge_start:name_end]
                     self._namen.append(temporaerer_name)
+                    item = item[laenge_name_end+name_end:]
             except:
                 fehlermeldung = "Es gab einen Fehler bei der Namensfindung"
                 logging.exception(fehlermeldung)
                 print(fehlermeldung)
+            #endregion
+            #region stase
+            try:
+                start_strase = item.find("</a></h4><p>")
+                laenge_start_strase = len("</a></h4><p>")
+                end_strase = item.find('· <a href="/tankstellen')
+            except:
+                pass
             #endregion
     def ausgabe_unsortierte_datensaetze(self):
         return self._unsortierte_datensaetze
