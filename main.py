@@ -22,3 +22,5 @@ t_ablauf.ablauf(repo)
 tankstelle_daten = t_ablauf._results
 print(tankstelle_daten)
 tankstellen_sorter = SortierServiceTankstellendaten(tankstelle_daten)
+tankstellen_sorter.sortiere_datensaetze()
+print(tankstellen_sorter.ausgabe_namen_liste())
