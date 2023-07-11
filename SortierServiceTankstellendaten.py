@@ -27,7 +27,7 @@ class SortierServiceTankstellendaten(ISortService):
                     temporaerer_name = item[name_start+laenge_start:name_end]
                     self._namen.append(temporaerer_name)
                     item = item[laenge_name_end+name_end:]
-                    print(item)
+                    #print(item)
             except:
                 fehlermeldung = "Es gab einen Fehler bei der Namensfindung"
                 logging.exception(fehlermeldung)
@@ -65,7 +65,8 @@ class SortierServiceTankstellendaten(ISortService):
                     fehlermeldung = f'Konvertierungsfehler bei {i}'
                     logging.exception(fehlermeldung)
                     print(fehlermeldung)
-            self._orte.append(gepruefter_ort)
+            if gepruefter_ort != '':
+                self._orte.append(gepruefter_ort)
             #endregion
     def ausgabe_unsortierte_datensaetze(self):
         return self._unsortierte_datensaetze
@@ -75,3 +76,8 @@ class SortierServiceTankstellendaten(ISortService):
         return self._strasen
     def ausgabe_orte_liste(self):
         return self._orte
+    def ausgabe_sortierte_datensaetze(self):
+        ausgabe = {"namen": self.ausgabe_namen_liste(),
+                   "strasen": self.ausgabe_strasen_liste(),
+                   "orte": self.ausgabe_orte_liste()}
+        return ausgabe
