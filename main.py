@@ -36,5 +36,9 @@ print(tankstellen_sorter.ausgabe_orte_liste())
 operationsystem = platform.system()
 if operationsystem == 'Windows' or operationsystem == 'windows':
     DBServManagement_windows = DBServiceManagement()
-    DBServManagement_windows.start_service('MySQL80')
+    status = DBServManagement_windows.check_service_is_running('MySQL80')
+    if status != 0 or status != '0':
+        DBServManagement_windows.start_service('MySQL80')
+    else:
+        print('Service läuft bereits.')
 #endregion
