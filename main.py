@@ -1,8 +1,11 @@
+import platform
+
 import EnumTags
 from AblaufPreis import AblaufPreis
 from SortierServicePreis import SortierServicePreis
 from AblaufTankstelle import AblaufTankstelle
 from SortierServiceTankstellendaten import SortierServiceTankstellendaten
+from DBServiceManagement_Windows import DBServiceManagement
 
 #region preisdatenHolen
 p_ablauf = AblaufPreis("https://ich-tanke.de/tankstellen/super-e5/umkreis/lauingen-donau/", EnumTags.Tags.underscore_class.value, "preis1")
@@ -27,4 +30,11 @@ tankstellen_sorter.sortiere_datensaetze()
 print(tankstellen_sorter.ausgabe_namen_liste())
 print(tankstellen_sorter.ausgabe_strasen_liste())
 print(tankstellen_sorter.ausgabe_orte_liste())
+#endregion
+
+#region DBservice starten
+operationsystem = platform.system()
+if operationsystem == 'Windows' or operationsystem == 'windows':
+    DBServManagement_windows = DBServiceManagement()
+    DBServManagement_windows.start_service('MySQL80')
 #endregion
