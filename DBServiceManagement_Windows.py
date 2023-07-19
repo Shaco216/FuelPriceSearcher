@@ -6,6 +6,8 @@ from IDBServiceManagement import IDBServiceManagement
 #https://stackoverflow.com/questions/46579170/python-code-to-check-if-service-is-running-or-not
 
 #todo: https://stackoverflow.com/questions/21944895/running-powershell-script-within-python-script-how-to-make-python-print-the-pow
+
+#check service: https://www.youtube.com/watch?v=LvGqh7IeVkI
 class DBServiceManagement(IDBServiceManagement):
 
     def start_service(self,service):
@@ -15,6 +17,8 @@ class DBServiceManagement(IDBServiceManagement):
         os.system(f'net stop {service}')
 
     def check_service_is_running(self, service):
-        status = subprocess.run(["powershell", "-Command", f'Get-Service -name "{service}"| Format-List -Property Status'], capture_output=True)
+        command = subprocess.run(["powershell", "-Command", f'Get-Service -name "{service}"| Format-List -Property Status'], capture_output=True)
+        status = command.stdout.decode('utf-8')
+        print(status)
         #stat = os.system(f'service {service} status')
         return status

@@ -38,5 +38,5 @@ if operationsystem == 'Windows' or operationsystem == 'windows':
     DBServManagement_windows = DBServiceManagement()
     status = DBServManagement_windows.check_service_is_running('MySQL80')
     DBServManagement_windows.start_service('MySQL80')
-    print(status)
+    print(f"Status des Datenbankprozesses: {status}")
 #endregion
