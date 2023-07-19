@@ -4,13 +4,13 @@ Create Table Ort ( plz int not null,
 name varchar(100) not null,
 constraint o_pk primary key(plz));
 
-Create Table Tankstelle ( Tid int not null,
+Create Table Tankstelle ( Tid int not null AUTO_INCREMENT,
 name varchar(100) not null,
 plz int not null,
 constraint t_pk primary key(Tid),
 foreign key (plz) references Ort(plz));
 
-Create Table Messung ( Mid int not null,
+Create Table Messung ( Mid int not null AUTO_INCREMENT,
 Tid int not null,
 datum date not null,
 benzin double,

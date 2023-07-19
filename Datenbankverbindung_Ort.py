@@ -6,4 +6,19 @@ class Datenbankverbindung_Ort(IDatenkbankverbidung):
         _sql_insert = "Insert into Ort (plz,name) values (%s,%s)"
         self._mycursor.execute(_sql_insert,data)
         self._mydb.commit()
-    def delete_sql_command(self):
+    def delete_sql_command(self,plz):
+        _sql_delete = f"Delete from Ort where %s"
+        self._mycursor.execute(_sql_delete,plz)
+        self._mydb.commit()
+    def select_sql_command_plz(self,plz):
+        _sql_select = f"Select * from Ort where plz = %s"
+        self._mycursor.execute(_sql_select,plz)
+        self._mydb.commit()
+    def select_sql_command_name(self,name):
+        _sql_select = f"Select * from Ort where name = %s"
+        self._mycursor.execute(_sql_select,name)
+        self._mydb.commit()
+    def update_sql_command(self,newname,targetplz):
+        _sql_update = f"Update Ort Set name = {newname} where plz = {targetplz}"
+        self._mycursor.execute(_sql_update,[newname,targetplz])
+        self._mydb.commit()
