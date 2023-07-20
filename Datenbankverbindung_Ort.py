@@ -19,6 +19,6 @@ class Datenbankverbindung_Ort(IDatenkbankverbidung):
         self._mycursor.execute(_sql_select,name)
         self._mydb.commit()
     def update_sql_command(self,newname,targetplz):
-        _sql_update = f"Update Ort Set name = {newname} where plz = {targetplz}"
+        _sql_update = f"Update Ort Set name = %s where plz = %s"
         self._mycursor.execute(_sql_update,[newname,targetplz])
         self._mydb.commit()
