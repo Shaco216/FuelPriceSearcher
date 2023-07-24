@@ -3,6 +3,7 @@ import platform
 import EnumTags
 from AblaufPreis import AblaufPreis
 from DBConnDataGatherer import DBConnDataGatherer
+from Datenbankverbindung_Messung import Datenbankverbindung_Messung
 from Datenbankverbindung_Ort import Datenbankverbindung_Ort
 from Datenbankverbindung_Tankstelle import Datenbankverbindung_Tankstelle
 from SortierServicePreis import SortierServicePreis
@@ -75,5 +76,15 @@ DB_Speicherbot_Tankstelle = Datenbankverbindung_Tankstelle(host=host,port=port,u
 for i in range(tankstellen_sorter.ausgabe_namen_liste()):
     tankstellen_name = tankstellen_sorter.ausgabe_namen_liste()[i]
     plz = tankstellen_sorter.ausgabe_plz_liste()[i]
+    DB_Speicherbot_Tankstelle.insert_sql_command(tankstellen_name,plz)
+#endregion
+
+#region DBDataspeichern Messung
+DB_Speicherbot_Messung = Datenbankverbindung_Messung(host=host,port=port,user=user,password=password,databasename=dbname)
+for i in range(preis_sorter.ausgabe_preis()):
+    benzinpreis = preis_sorter.ausgabe_preis()[i]
+    uhrzeit = preis_sorter.ausgabe_uhrzeit()[i]
+    datum = preis_sorter.ausgabe_datum()[i]
+    DB_Speicherbot_Messung.insert_sql_command()
 #endregion
 
