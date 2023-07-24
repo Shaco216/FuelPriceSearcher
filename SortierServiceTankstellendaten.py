@@ -5,7 +5,8 @@ import logging
 class SortierServiceTankstellendaten(ISortService):
     _namen = []
     _strasen = []
-    _orte = []
+    _plz = []
+    _ortsname = []
     def __init__(self,tankstellendaten):
         self._unsortierte_datensaetze = tankstellendaten
     def sortiere_datensaetze(self):
@@ -33,7 +34,7 @@ class SortierServiceTankstellendaten(ISortService):
                 logging.exception(fehlermeldung)
                 print(fehlermeldung)
             #endregion
-            #region stase
+            #region strase
             try:
                 if '</h4><p>' in item:
                     start_strase = item.find("</h4><p>")
@@ -56,6 +57,7 @@ class SortierServiceTankstellendaten(ISortService):
             laenge_ort_anfang = len('">')
             temporaerer_ort = item[ort_anfang+laenge_ort_anfang:ort_anfang+laenge_ort_anfang+5]
             gepruefter_ort = ''
+            laenge_gepruefter_ort = 0
             for i in temporaerer_ort:
                 try:
                     i = int(i)
@@ -66,7 +68,14 @@ class SortierServiceTankstellendaten(ISortService):
                     logging.exception(fehlermeldung)
                     print(fehlermeldung)
             if gepruefter_ort != '':
-                self._orte.append(gepruefter_ort)
+                self._plz.append(gepruefter_ort)
+                # Name der Ortschaft wird extrahiert
+                laenge_gepruefter_ort = len(gepruefter_ort)
+                ende_plz = item.find(gepruefter_ort)
+                #3 stellen von plz und leerzeichen
+                reststellen = 4
+                ortsname = item[ende_plz+laenge_ort_anfang+reststellen:ort_ende]
+                #print(ortsname)
             #endregion
     def ausgabe_unsortierte_datensaetze(self):
         return self._unsortierte_datensaetze
@@ -74,10 +83,13 @@ class SortierServiceTankstellendaten(ISortService):
         return self._namen
     def ausgabe_strasen_liste(self):
         return self._strasen
-    def ausgabe_orte_liste(self):
-        return self._orte
+    def ausgabe_plz_liste(self):
+        return self._plz
+    def ausgabe_ortsname_liste(self):
+        return self._ortsname
     def ausgabe_sortierte_datensaetze(self):
         ausgabe = {"namen": self.ausgabe_namen_liste(),
                    "strasen": self.ausgabe_strasen_liste(),
-                   "orte": self.ausgabe_orte_liste()}
+                   "plz": self.ausgabe_plz_liste(),
+                   "ortsname": self.ausgabe_ortsname_liste()}
         return ausgabe

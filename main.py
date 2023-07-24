@@ -4,6 +4,7 @@ import EnumTags
 from AblaufPreis import AblaufPreis
 from DBConnDataGatherer import DBConnDataGatherer
 from Datenbankverbindung_Ort import Datenbankverbindung_Ort
+from Datenbankverbindung_Tankstelle import Datenbankverbindung_Tankstelle
 from SortierServicePreis import SortierServicePreis
 from AblaufTankstelle import AblaufTankstelle
 from SortierServiceTankstellendaten import SortierServiceTankstellendaten
@@ -31,7 +32,7 @@ tankstellen_sorter = SortierServiceTankstellendaten(tankstelle_daten)
 tankstellen_sorter.sortiere_datensaetze()
 print(tankstellen_sorter.ausgabe_namen_liste())
 print(tankstellen_sorter.ausgabe_strasen_liste())
-print(tankstellen_sorter.ausgabe_orte_liste())
+print(tankstellen_sorter.ausgabe_plz_liste())
 #endregion
 
 #region DBservice starten
@@ -63,8 +64,16 @@ dbname = dbLoginDaten.get_dbName()
 #region DBDataspeichern Ort
 DB_Speicherbot_Ort = Datenbankverbindung_Ort(host=host,port=port,user=user,password=password,databasename=dbname)
 print(tankstellen_sorter.sortiere_datensaetze())
-for i in range(tankstellen_sorter.ausgabe_orte_liste()):
-    pass
-DB_Speicherbot_Ort.insert_sql_command(tankstellen_sorter.sortiere_datensaetze())
+for i in range(tankstellen_sorter.ausgabe_plz_liste()):
+    plz = tankstellen_sorter.ausgabe_plz_liste()[i]
+    orts_name = tankstellen_sorter.ausgabe_ortsname_liste()[i]
+    DB_Speicherbot_Ort.insert_sql_command([plz, orts_name])
+#endregion
+
+#region DBDataspeichern Tankstelle
+DB_Speicherbot_Tankstelle = Datenbankverbindung_Tankstelle(host=host,port=port,user=user,password=password,databasename=dbname)
+for i in range(tankstellen_sorter.ausgabe_namen_liste()):
+    tankstellen_name = tankstellen_sorter.ausgabe_namen_liste()[i]
+    plz = tankstellen_sorter.ausgabe_plz_liste()[i]
 #endregion
 

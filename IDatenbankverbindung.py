@@ -2,7 +2,14 @@ import mysql.connector
 
 #https://www.w3schools.com/python/python_mysql_insert.asp
 
-#https://stackoverflow.com/questions/50557234/authentication-plugin-caching-sha2-password-is-not-supported
+#Wenn folgender Fehler auftritt:
+#Authentication plugin 'caching_sha2_password' is not supported
+
+#Lösung: im Terminal:
+#1. pip uninstall mysql-connector
+#2. pip uninstall mysql-connector-python
+#3. pip install mysql-connector-python
+
 class IDatenbankverbidung():
     _mydb = ""
     _mycursor = ""
