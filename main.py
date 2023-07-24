@@ -2,6 +2,8 @@ import platform
 
 import EnumTags
 from AblaufPreis import AblaufPreis
+from DBConnDataGatherer import DBConnDataGatherer
+from Datenbankverbindung_Ort import Datenbankverbindung_Ort
 from SortierServicePreis import SortierServicePreis
 from AblaufTankstelle import AblaufTankstelle
 from SortierServiceTankstellendaten import SortierServiceTankstellendaten
@@ -37,6 +39,25 @@ operationsystem = platform.system()
 if operationsystem == 'Windows' or operationsystem == 'windows':
     DBServManagement_windows = DBServiceManagement()
     status = DBServManagement_windows.check_service_is_running()
-    DBServManagement_windows.start_service('MySQL80')
     print(f"Status des Datenbankprozesses: {status}")
+    if status != "Running":
+        DBServManagement_windows.start_service('MySQL80')
+        print(f"Status des Datenbankprozesses: {status}")
 #endregion
+
+#region DBLoginData
+dbLoginDaten = DBConnDataGatherer()
+host = dbLoginDaten.get_host()
+user = dbLoginDaten.get_user()
+port = dbLoginDaten.get_port()
+password = dbLoginDaten.get_password()
+#endregion
+
+#region DBDataspeichern Ort
+DB_Speicherbot_Ort = Datenbankverbindung_Ort()
+print(tankstellen_sorter.sortiere_datensaetze())
+for i in range(tankstellen_sorter.ausgabe_orte_liste()):
+    pass
+DB_Speicherbot_Ort.insert_sql_command(tankstellen_sorter.sortiere_datensaetze())
+#endregion
+

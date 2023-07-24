@@ -1,18 +1,25 @@
-#Create database FuelPriceSearcher;
-#Create schema fuelpricesearcher;
+Drop Schema fuelpricesearcher;
+Drop database FuelPriceSearcher;
+
+
+Create database FuelPriceSearcher;
+Create schema fuelpricesearcher;
 
 #show databases
 
+#drop table Ort
 Create Table Ort ( plz int not null,
 name varchar(100) not null,
 constraint o_pk primary key(plz));
 
+#drop Table Tankstelle
 Create Table Tankstelle ( Tid int not null AUTO_INCREMENT,
 name varchar(100) not null,
 plz int not null,
 constraint t_pk primary key(Tid),
 foreign key (plz) references Ort(plz));
 
+#drop Table Messung
 Create Table Messung ( Mid int not null AUTO_INCREMENT,
 Tid int not null,
 datum date not null,
