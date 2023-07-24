@@ -47,14 +47,21 @@ if operationsystem == 'Windows' or operationsystem == 'windows':
 
 #region DBLoginData
 dbLoginDaten = DBConnDataGatherer()
+dbLoginDaten.set_port(3306)
+dbLoginDaten.set_host("localhost")
+dbLoginDaten.set_user("root")
+dbLoginDaten.set_password("root")
+dbLoginDaten.set_dbName("fuelpricesearcher")
+
 host = dbLoginDaten.get_host()
 user = dbLoginDaten.get_user()
 port = dbLoginDaten.get_port()
 password = dbLoginDaten.get_password()
+dbname = dbLoginDaten.get_dbName()
 #endregion
 
 #region DBDataspeichern Ort
-DB_Speicherbot_Ort = Datenbankverbindung_Ort()
+DB_Speicherbot_Ort = Datenbankverbindung_Ort(host=host,port=port,user=user,password=password,databasename=dbname)
 print(tankstellen_sorter.sortiere_datensaetze())
 for i in range(tankstellen_sorter.ausgabe_orte_liste()):
     pass
