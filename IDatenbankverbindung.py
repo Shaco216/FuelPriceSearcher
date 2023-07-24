@@ -1,7 +1,7 @@
 import mysql.connector
 
 #https://www.w3schools.com/python/python_mysql_insert.asp
-class IDatenkbankverbidung():
+class IDatenbankverbidung():
     _mydb = ""
     _mycursor = ""
     def __init__(self,host,user,password,database):

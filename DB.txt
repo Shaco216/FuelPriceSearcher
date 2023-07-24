@@ -1,4 +1,7 @@
-Create database FuelPriceSearcher;
+#Create database FuelPriceSearcher;
+#Create schema fuelpricesearcher;
+
+#show databases
 
 Create Table Ort ( plz int not null,
 name varchar(100) not null,

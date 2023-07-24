@@ -1,6 +1,6 @@
-from IDatenbankverbindung import IDatenkbankverbidung
+from IDatenbankverbindung import IDatenbankverbidung
 
-class Datenbankverbindung_Messung(IDatenkbankverbidung):
+class Datenbankverbindung_Messung(IDatenbankverbidung):
 
     def insert_sql_command(self,Tid,datum,bezin,diesel,e10,superplus):
         _sql_insert = "Insert into Messung (Tid,datum,benzin,diesel,e10,superplus) values (%s,&s,%s,&s,%s,&s)"

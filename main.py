@@ -36,7 +36,7 @@ print(tankstellen_sorter.ausgabe_orte_liste())
 operationsystem = platform.system()
 if operationsystem == 'Windows' or operationsystem == 'windows':
     DBServManagement_windows = DBServiceManagement()
-    status = DBServManagement_windows.check_service_is_running('MySQL80')
+    status = DBServManagement_windows.check_service_is_running()
     DBServManagement_windows.start_service('MySQL80')
     print(f"Status des Datenbankprozesses: {status}")
 #endregion

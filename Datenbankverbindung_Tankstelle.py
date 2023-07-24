@@ -1,6 +1,6 @@
-from IDatenbankverbindung import IDatenkbankverbidung
+from IDatenbankverbindung import IDatenbankverbidung
 
-class Datenbankverbindung_Tankstelle(IDatenkbankverbidung):
+class Datenbankverbindung_Tankstelle(IDatenbankverbidung):
 
     def insert_sql_command(self,name,plz):
         _sql_insert = "Insert into Ort (name,plz) values (%s,%s)"
