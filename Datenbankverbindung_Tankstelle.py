@@ -14,3 +14,8 @@ class Datenbankverbindung_Tankstelle(IDatenbankverbidung):
         _sql_update = "Update Tankstelle set name = %s where Tid = %s"
         self._mycursor.execute(_sql_update,[name,Tid])
         self._mydb.commit()
+    def select_Tid_sql_command(self, name, plz):
+        _sql_select = "select Tid from Tankstelle where name = %s and plz = %s"
+        self._mycursor.execute(_sql_select,[name,plz])
+        result = self._mycursor.fetchall()
+        return result

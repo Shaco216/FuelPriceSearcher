@@ -9,8 +9,13 @@ class Datenbankverbindung_Messung(IDatenbankverbidung):
     def select_sql_command(self,Mid):
         _sql_select = "Select * from Messung where Mid = %s"
         self._mycursor.execute(_sql_select,Mid)
-        self._mydb.commit()
+        result = self._mycursor.fetchall()
+        return result
     def delete_sql_command(self,Mid):
         _sql_delete = "Delete from Messung where Mid = %s"
         self._mycursor.execute(_sql_delete,Mid)
+        self._mydb.commit()
+    def insert_sql_command_benzin(self,Tid,datum,bezin):
+        _sql_insert = "Insert into Messung (Tid,datum,benzin) values (%s,&s,%s)"
+        self._mycursor.execute(_sql_insert,[Tid,datum,bezin])
         self._mydb.commit()
