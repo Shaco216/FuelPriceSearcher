@@ -71,11 +71,16 @@ class SortierServiceTankstellendaten(ISortService):
                 self._plz.append(gepruefter_ort)
                 # Name der Ortschaft wird extrahiert
                 laenge_gepruefter_ort = len(gepruefter_ort)
+
+                item = item[ort_eingrenzung:]
+
                 ende_plz = item.find(gepruefter_ort)
                 #3 stellen von plz und leerzeichen
                 reststellen = 4
-                ortsname = item[ende_plz+laenge_ort_anfang+reststellen:ort_ende]
+                ort_ende_nach_verkürzung = item.find('</a></p><p>')
+                ortsname = item[ende_plz+laenge_ort_anfang+reststellen:ort_ende_nach_verkürzung]
                 #print(ortsname)
+                self._ortsname.append(ortsname)
             #endregion
     def ausgabe_unsortierte_datensaetze(self):
         return self._unsortierte_datensaetze

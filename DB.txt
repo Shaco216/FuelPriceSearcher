@@ -23,6 +23,7 @@ foreign key (plz) references Ort(plz));
 Create Table Messung ( Mid int not null AUTO_INCREMENT,
 Tid int not null,
 datum date not null,
+uhrzeit varchar(50) not null,
 benzin double,
 diesel double,
 e10 double,

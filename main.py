@@ -65,10 +65,20 @@ dbname = dbLoginDaten.get_dbName()
 #region DBDataspeichern Ort
 DB_Speicherbot_Ort = Datenbankverbindung_Ort(host=host,port=port,user=user,password=password,databasename=dbname)
 print(tankstellen_sorter.sortiere_datensaetze())
-for i in range(tankstellen_sorter.ausgabe_plz_liste()):
+for i in range(len(tankstellen_sorter.ausgabe_plz_liste())):
     plz = tankstellen_sorter.ausgabe_plz_liste()[i]
-    bereits_vorhandene_plz = DB_Speicherbot_Ort.select_sql_command_plz(plz)
-    if bereits_vorhandene_plz != plz:
+    alle_ergebnisse = DB_Speicherbot_Ort.select_plz_sql_command_by_plz(plz)
+    if len(alle_ergebnisse) > 0:
+        bereits_vorhandene_plz = alle_ergebnisse[0]
+        #Konvertierung von tuple zu string
+        bereits_vorhandene_plz = str(bereits_vorhandene_plz[0])
+    else:
+        bereits_vorhandene_plz = 0
+    print("plz: " + plz)
+    print("bereits_vorhandene_plz: " + str(bereits_vorhandene_plz))
+    if str(bereits_vorhandene_plz) != plz:
+        print(tankstellen_sorter.ausgabe_ortsname_liste())
+        print(tankstellen_sorter.ausgabe_plz_liste())
         orts_name = tankstellen_sorter.ausgabe_ortsname_liste()[i]
         DB_Speicherbot_Ort.insert_sql_command([plz, orts_name])
 #endregion
@@ -93,6 +103,6 @@ for i in range(preis_sorter.ausgabe_preis()):
     benzinpreis = preis_sorter.ausgabe_preis()[i]
     uhrzeit = preis_sorter.ausgabe_uhrzeit()[i]
     datum = preis_sorter.ausgabe_datum()[i]
-    DB_Speicherbot_Messung.insert_sql_command()
+    DB_Speicherbot_Messung.insert_sql_command(Tid,datum,uhrzeit,benzinpreis)
 #endregion
 

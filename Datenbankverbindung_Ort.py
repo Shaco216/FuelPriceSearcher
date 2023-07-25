@@ -12,7 +12,14 @@ class Datenbankverbindung_Ort(IDatenbankverbidung):
         self._mydb.commit()
     def select_sql_command_plz(self,plz):
         _sql_select = f"Select * from Ort where plz = %s"
-        self._mycursor.execute(_sql_select,plz)
+        list_plz = [plz]
+        self._mycursor.execute(_sql_select,list_plz)
+        result = self._mycursor.fetchall()
+        return result
+    def select_plz_sql_command_by_plz(self,plz):
+        _sql_select = f"Select plz from Ort where plz = %s"
+        list_plz = [plz]
+        self._mycursor.execute(_sql_select,list_plz)
         result = self._mycursor.fetchall()
         return result
     def select_sql_command_name(self,name):
