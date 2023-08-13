@@ -1,10 +1,12 @@
 from IDatenbankverbindung import IDatenbankverbidung
+import json
 
 class Datenbankverbindung_Tankstelle(IDatenbankverbidung):
 
-    def insert_sql_command(self,name,plz):
+    def insert_sql_command(self,data):
         _sql_insert = "Insert into Ort (name,plz) values (%s,%s)"
-        self._mycursor.execute(_sql_insert,[name,plz])
+        data = json.dumps(data)
+        self._mycursor.execute(_sql_insert,data)
         self._mydb.commit()
     def delete_sql_command(self,Tid):
         _sql_delete = "Delete from Tankstelle where Tid = %s"

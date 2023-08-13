@@ -11,6 +11,8 @@ from AblaufTankstelle import AblaufTankstelle
 from SortierServiceTankstellendaten import SortierServiceTankstellendaten
 from DBServiceManagement_Windows import DBServiceManagement
 
+
+
 #region preisdatenHolen
 p_ablauf = AblaufPreis("https://ich-tanke.de/tankstellen/super-e5/umkreis/lauingen-donau/", EnumTags.Tags.underscore_class.value, "preis1")
 p_ablauf.ablauf()
@@ -90,7 +92,7 @@ for i in range(len(tankstellen_sorter.ausgabe_namen_liste())):
     plz = tankstellen_sorter.ausgabe_plz_liste()[i]
     Tid = DB_Speicherbot_Tankstelle.select_Tid_sql_command(tankstellen_name,plz)
     if Tid is None:
-        DB_Speicherbot_Tankstelle.insert_sql_command(tankstellen_name,plz)
+        DB_Speicherbot_Tankstelle.insert_sql_command([tankstellen_name,plz])
 #endregion
 
 #region DBDataspeichern Messung
@@ -103,6 +105,6 @@ for i in range(len(preis_sorter.ausgabe_preis())):
     benzinpreis = preis_sorter.ausgabe_preis()[i]
     uhrzeit = preis_sorter.ausgabe_uhrzeit()[i]
     datum = preis_sorter.ausgabe_datum()[i]
-    DB_Speicherbot_Messung.insert_sql_command(Tid,datum,uhrzeit,benzinpreis)
+    DB_Speicherbot_Messung.insert_sql_command([Tid,datum,uhrzeit,benzinpreis])
 #endregion
 
