@@ -85,7 +85,7 @@ for i in range(len(tankstellen_sorter.ausgabe_plz_liste())):
 
 #region DBDataspeichern Tankstelle
 DB_Speicherbot_Tankstelle = Datenbankverbindung_Tankstelle(host=host,port=port,user=user,password=password,databasename=dbname)
-for i in range(tankstellen_sorter.ausgabe_namen_liste()):
+for i in range(len(tankstellen_sorter.ausgabe_namen_liste())):
     tankstellen_name = tankstellen_sorter.ausgabe_namen_liste()[i]
     plz = tankstellen_sorter.ausgabe_plz_liste()[i]
     Tid = DB_Speicherbot_Tankstelle.select_Tid_sql_command(tankstellen_name,plz)
@@ -95,7 +95,7 @@ for i in range(tankstellen_sorter.ausgabe_namen_liste()):
 
 #region DBDataspeichern Messung
 DB_Speicherbot_Messung = Datenbankverbindung_Messung(host=host,port=port,user=user,password=password,databasename=dbname)
-for i in range(preis_sorter.ausgabe_preis()):
+for i in range(len(preis_sorter.ausgabe_preis())):
     Tid = DB_Speicherbot_Tankstelle.select_Tid_sql_command(
         tankstellen_sorter.ausgabe_namen_liste()[i],
         tankstellen_sorter.ausgabe_plz_liste()[i]
